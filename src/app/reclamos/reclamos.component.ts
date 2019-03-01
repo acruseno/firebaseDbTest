@@ -8,11 +8,13 @@ import { ReclamosService } from '../services/reclamos.service';
 })
 export class ReclamosComponent implements OnInit {
 
-  constructor(private toast: ToastrService, _reclamoService: ReclamosService ) {
-    this.toast.success("Al fin CTM!", "Empezo el webeo");
-  }
+  constructor(private toast: ToastrService, _reclamoService: ReclamosService ) { }
 
   ngOnInit() {
+  }
+
+  successAccion(){
+    this.toast.success("Al fin CTM!");
   }
 
 }

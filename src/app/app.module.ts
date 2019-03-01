@@ -8,6 +8,10 @@ import { ReclamosComponent } from './reclamos/reclamos.component';
 
 import { ReclamosService } from './services/reclamos.service';
 
+import { environment } from '../environments/environment';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireModule } from 'angularfire2'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +20,9 @@ import { ReclamosService } from './services/reclamos.service';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [ 
     ReclamosService
