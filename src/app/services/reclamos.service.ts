@@ -7,16 +7,16 @@ import { Reclamo } from '../models/reclamo';
   providedIn: 'root'
 })
 export class ReclamosService {
-
+  selectedIssue: Reclamo = new Reclamo();
   reclamoList: AngularFireList<any>;
 
-  constructor(private _angularFireService) { 
+  constructor(private _angularFireDatabase: AngularFireDatabase) { 
 
   }
 
   //Obtener todos los reclamos
   getReclamos(){
-    return this.reclamoList = this._angularFireService.list("reclamos");
+    return this.reclamoList = this._angularFireDatabase.list("reclamos");
   }
 
   // //retorna el reclamo solicitado
