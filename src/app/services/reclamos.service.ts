@@ -51,5 +51,6 @@ export class ReclamosService {
   //elimina el registro especificado de la base de datos
   deleteReclamo(_id: string){
     // this.reclamoList.remove(_id);
+    return this._afs.collection('reclamos').doc(_id).delete();
   }
 }

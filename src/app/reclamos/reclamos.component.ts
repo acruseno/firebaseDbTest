@@ -32,6 +32,17 @@ export class ReclamosComponent implements OnInit {
 
   resetearForm(_formulario: NgForm){
     console.log("limpiando formulario");
+    if(_formulario != null){
+      _formulario.reset();
+      this._reclamoService.selectedIssue = {
+        $key: null,
+        data: {
+          titulo: '',
+          texto: '',
+          locacion: ''
+        }
+      }
+    }
   }
 
   obtenerInformacion(){
@@ -81,6 +92,10 @@ export class ReclamosComponent implements OnInit {
 
   eliminar(item) {
     console.log("eliminar");
+    if(confirm('Esta seguro que desea eliminar este registro?') == true){
+      this._reclamoService.deleteReclamo(item);
+      this.toast.success("Se ha eliminado el registro!", "Registro eliminado");
+    }
   }
 
   agregar(item) {

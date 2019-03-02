@@ -44,10 +44,10 @@
             <td>{{item.data.texto}}</td>
             <td>{{item.data.locacion}}</td>
             <td>
-              <a class="btn btn-warning" (click)="editar(item)">
+              <a class="btn btn-warning" (click)="editar(item.$key)">
                 <i class="fa fa-pencil-square-o"></i>Editar
               </a>
-              <a class="btn btn-danger" (click)="eliminar(item)">
+              <a class="btn btn-danger" (click)="eliminar(item.$key)">
                 <i class="fa fa-trash-square-o"></i>Eliminar
               </a>
             </td>
