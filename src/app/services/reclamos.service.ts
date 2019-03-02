@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
-import { AngularFireList } from 'angularfire2/database';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Reclamo } from '../models/reclamo';
 
 @Injectable({
@@ -8,15 +7,15 @@ import { Reclamo } from '../models/reclamo';
 })
 export class ReclamosService {
   selectedIssue: Reclamo = new Reclamo();
-  reclamoList: AngularFireList<any>;
+  reclamoList: AngularFirestoreCollection<any>;
 
-  constructor(private _angularFireDatabase: AngularFireDatabase) { 
+  constructor(private _afs: AngularFirestore) { 
 
   }
 
   //Obtener todos los reclamos
   getReclamos(){
-    return this.reclamoList = this._angularFireDatabase.list("reclamos");
+    return this._afs.collection('reclamos').snapshotChanges();
   }
 
   // //retorna el reclamo solicitado
@@ -25,27 +24,32 @@ export class ReclamosService {
   // }
 
   //agrega un reclamo a la BD
-  addReclamo(_reclamo: Reclamo){
-    this.reclamoList.push({
-      titulo: _reclamo.titulo,
-      texto: _reclamo.texto,
-      categoria: _reclamo.categoria,
-      locacion: _reclamo.locacion
-    });
+  addReclamo(reclamo: {
+    titulo: string,
+    texto: string,
+    locacion: string
+  }){
+    // this.reclamoList.push({
+    //   titulo: _reclamo.titulo,
+    //   texto: _reclamo.texto,
+    //   categoria: _reclamo.categoria,
+    //   locacion: _reclamo.locacion
+    // });
+    this._afs.collection("reclamos").add(reclamo);
   }
 
   //actualiza un registo de la base de datos
-  updateReclamo(_id: any, _reclamo: Reclamo){
-    this.reclamoList.update(_id, {
-      titulo: _reclamo.titulo,
-      texto: _reclamo.texto,
-      categoria: _reclamo.categoria,
-      locacion: _reclamo.locacion
-    })
+  updateReclamo(_id: string, _reclamo: Reclamo){
+    // this.reclamoList.update(_id, {
+    //   titulo: _reclamo.titulo,
+    //   texto: _reclamo.texto,
+    //   categoria: _reclamo.categoria,
+    //   locacion: _reclamo.locacion
+    // })
   }
 
   //elimina el registro especificado de la base de datos
-  deleteReclamo(_id: any){
-    this.reclamoList.remove(_id);
+  deleteReclamo(_id: string){
+    // this.reclamoList.remove(_id);
   }
 }

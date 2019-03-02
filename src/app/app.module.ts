@@ -9,8 +9,8 @@ import { ReclamosComponent } from './reclamos/reclamos.component';
 import { ReclamosService } from './services/reclamos.service';
 
 import { environment } from '../environments/environment';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireModule } from 'angularfire2'
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 @NgModule({
   declarations: [
@@ -21,10 +21,10 @@ import { AngularFireModule } from 'angularfire2'
     BrowserModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebase),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFirestoreModule.enablePersistence()
   ],
   providers: [ 
     ReclamosService

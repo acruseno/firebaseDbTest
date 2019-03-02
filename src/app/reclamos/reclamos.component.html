@@ -18,7 +18,7 @@
         </div>
 
         <div class="form-group">
-          <button class="btn btn-default" type="submit" [disabled]="!reclamoForm.valid">
+          <button class="btn btn-success" type="submit" [disabled]="!reclamoForm.valid">
             <i class="fa fa-floppy-o"></i>
             Grabar
           </button>
@@ -31,7 +31,7 @@
     </div>
     <div class="col-8">
       <h1>Lista de reclamos</h1>
-      <table class="table table-sm table-hover">
+      <table class="table table-stripped">
         <thead>
           <th>titulo</th>
           <th>texto</th>
@@ -39,10 +39,10 @@
           <th>*</th>
         </thead>
         <tbody>
-          <tr *ngFor="let item of reclamoLista">
-            <td>{{item.titulo}}</td>
-            <td>{{item.texto}}</td>
-            <td>{{item.locacion}}</td>
+          <tr *ngFor="let item of reclamosLista">
+            <td>{{item.data.titulo}}</td>
+            <td>{{item.data.texto}}</td>
+            <td>{{item.data.locacion}}</td>
             <td>
               <a class="btn btn-warning" (click)="editar(item)">
                 <i class="fa fa-pencil-square-o"></i>Editar
